@@ -10,6 +10,7 @@ import Operation (addition, substract, multiply, divide)
 import Text.Read
 import Control.Monad
 import Data.Char (isDigit)
+import Tree
 import Parse (filterArr)
 
 
