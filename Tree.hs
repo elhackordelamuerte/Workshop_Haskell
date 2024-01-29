@@ -21,3 +21,11 @@ buildExpr tree1 operation tree2 = case operation of
 
 mapValues :: [String] -> [ASTree]
 mapValues = map (Value . read)
+
+buildExprList :: [String] -> [ASTree] -> ASTree
+buildExprList [] [tree] = tree
+buildExprList (op:ops) (t1:t2:trees) = buildExprList ops ((buildExpr t1 op t2) : trees)
+buildExprList _ _ = error "Invalid input"
+
+buildAST :: ([String], [String]) -> ASTree
+buildAST (ops, values) = buildExprList ops (mapValues values)
