@@ -29,3 +29,10 @@ buildExprList _ _ = error "Invalid input"
 
 buildAST :: ([String], [String]) -> ASTree
 buildAST (ops, values) = buildExprList ops (mapValues values)
+
+evalall :: ASTree -> Int
+evalall (Value n) = n
+evalall (Add e1 e2) = evalall e1 + evalall e2
+evalall (Sub e1 e2) = evalall e1 - evalall e2
+evalall (Mul e1 e2) = evalall e1 * evalall e2
+evalall (Div e1 e2) = evalall e1 `div` evalall e2
